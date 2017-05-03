@@ -27,6 +27,8 @@ public class Emisor {
     }
 
     /**
+     * Metodo que realiza la firma en el documento.
+     * Le llega un array de bytes, la clave privada y el nombre del archivo.
      * 
      * @param data
      * @param priv
@@ -40,17 +42,21 @@ public class Emisor {
         int mida;
         
         try {
+            //Inicializamos el bufferedInput i el fileInput para realizar la lectura del fichero.
             fis = new FileInputStream(fitxer);
             bis = new BufferedInputStream(fis);
             
+            //Inicializamos el signer para la firma.
             Signature signer = Signature.getInstance("SHA1withRSA");
             signer.initSign(priv); //Inicialitzem la firma digital a partir de l ’algorisme utilitzat
             
+            //Recorremos el archivo.
             while(bis.available() != 0){
                 mida = bis.read(buffer);
                 signer.update(buffer, 0, mida); //Li assignem a l’objecte firma les dades a firmar digitalment
             }
             
+            //Se cierra el recurso.
             bis.close();
             signature = signer.sign(); //Finalment generem la firma.
         } catch (Exception ex) {
