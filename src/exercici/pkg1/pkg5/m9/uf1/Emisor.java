@@ -32,7 +32,7 @@ public class Emisor {
      * @param priv
      * @return 
      */
-    public byte[] signData(byte[] data, PrivateKey priv, File fitxer) {
+    public byte[] signData(byte[] data, PrivateKey priv, String fitxer) {
         byte[] signature = null;
         FileInputStream fis;
         BufferedInputStream bis;
@@ -48,11 +48,10 @@ public class Emisor {
             
             while(bis.available() != 0){
                 mida = bis.read(buffer);
-                signer.update(buffer, 0, mida);
+                signer.update(buffer, 0, mida); //Li assignem a l’objecte firma les dades a firmar digitalment
             }
             
-            
-            signer.update(data); //Li assignem a l’objecte firma les dades a firmar digitalment
+            bis.close();
             signature = signer.sign(); //Finalment generem la firma.
         } catch (Exception ex) {
             System.err.println("Error signant les dades: " + ex);
