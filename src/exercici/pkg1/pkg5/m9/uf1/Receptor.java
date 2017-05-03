@@ -17,9 +17,11 @@ public class Receptor {
         int mida;
         
         try {
+            //Inicializamos el bufferedInput i el fileInput para realizar la lectura del fichero.
             fis = new FileInputStream(fitxer);
             bis = new BufferedInputStream(fis);
             
+            //Inicializamos el signer para la firma.
             Signature signer = Signature.getInstance("SHA1withRSA");
             signer.initVerify(pub);
             
