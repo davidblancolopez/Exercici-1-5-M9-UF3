@@ -10,7 +10,7 @@ public class Receptor {
     
     
     public boolean validateSignature(byte[] data, byte[] signature, PublicKey pub, String fitxer) {
-        boolean isValid = false;
+        boolean valid = false;
         FileInputStream fis;
         BufferedInputStream bis;
         byte[] buffer = new byte [1024];
@@ -25,13 +25,17 @@ public class Receptor {
             Signature signer = Signature.getInstance("SHA1withRSA");
             signer.initVerify(pub);
             
+            //Recorremos el archivo.
+            while(bis.available() != 0){
+                mida = bis.read(buffer);
+                signer.update(buffer, 0, mida); //Li assignem a l’objecte firma les dades a firmar digitalment
+            }
             
-            signer.update(data);
-            isValid = signer.verify(signature);
+            valid = signer.verify(signature);
         } catch (Exception ex) {
             System.err.println("Error validant les dades: " + ex);
         }
-        return isValid;
+        return valid;
     }
     
     
