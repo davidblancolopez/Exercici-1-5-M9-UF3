@@ -13,11 +13,14 @@ public class Exercici15M9UF1 {
         KeyPair key;
         byte[]contingut;
         
+        //Creem les claus.
         key = em.generaClaus();
         
+        //Posem el contingut del fitxer a un array amb la firma.
         contingut = em.signData("carta.txt", key.getPrivate());
         
-        System.out.println(re.validateSignature("carta2.txt", contingut, key.getPublic()));
+        //Mostrem si la firma es correcte amb aquesta comprovació
+        System.out.println(re.validateSignature("carta.txt", contingut, key.getPublic()));
     }
     
 }

@@ -11,7 +11,7 @@ import java.security.Signature;
 
 public class Emisor {
 
-    private KeyPair keyPair;
+    private KeyPair key;
 
     /**
      * Metodo que genera las claves que se utilizaran para cifrar y descifrar
@@ -21,8 +21,7 @@ public class Emisor {
      * @throws NoSuchAlgorithmException
      */
     public KeyPair generaClaus() throws NoSuchAlgorithmException {
-        KeyPair key;
-        
+               
         KeyPairGenerator KeyGenerator = KeyPairGenerator.getInstance("RSA");
         KeyGenerator.initialize(2048);
         key = KeyGenerator.genKeyPair();

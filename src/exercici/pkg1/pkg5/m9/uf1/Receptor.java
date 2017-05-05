@@ -31,6 +31,10 @@ public class Receptor {
                 signer.update(buffer, 0, mida); //Li assignem a l’objecte firma les dades a firmar digitalment
             }
             
+            //Tanquem el recurs.
+            bis.close();
+            
+            //Es verifica la firma.
             valid = signer.verify(signature);
         } catch (Exception ex) {
             System.err.println("Error validant les dades: " + ex);
