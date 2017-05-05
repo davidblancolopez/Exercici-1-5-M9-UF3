@@ -20,10 +20,14 @@ public class Emisor {
      *
      * @throws NoSuchAlgorithmException
      */
-    public void generaClaus() throws NoSuchAlgorithmException {
+    public KeyPair generaClaus() throws NoSuchAlgorithmException {
+        KeyPair key;
+        
         KeyPairGenerator KeyGenerator = KeyPairGenerator.getInstance("RSA");
         KeyGenerator.initialize(2048);
-        keyPair = KeyGenerator.genKeyPair();
+        key = KeyGenerator.genKeyPair();
+        
+        return key;
     }
 
     /**
@@ -34,7 +38,7 @@ public class Emisor {
      * @param priv
      * @return 
      */
-    public byte[] signData(byte[] data, PrivateKey priv, String fitxer) {
+    public byte[] signData(String fitxer, PrivateKey priv) {
         byte[] signature = null;
         FileInputStream fis;
         BufferedInputStream bis;

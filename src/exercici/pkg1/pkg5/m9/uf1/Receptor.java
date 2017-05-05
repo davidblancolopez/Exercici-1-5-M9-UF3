@@ -9,7 +9,7 @@ public class Receptor {
 
     
     
-    public boolean validateSignature(byte[] data, byte[] signature, PublicKey pub, String fitxer) {
+    public boolean validateSignature(String fitxer, byte[] signature, PublicKey pub) {
         boolean valid = false;
         FileInputStream fis;
         BufferedInputStream bis;
